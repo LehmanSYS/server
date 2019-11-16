@@ -1,0 +1,31 @@
+{
+  "name": "lehman",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon App.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "mongodb": "^3.3.4",
+    "mongoose": "^5.7.11",
+    "nodemon": "^1.19.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LehmanSYS/server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LehmanSYS/server/issues"
+  },
+  "homepage": "https://github.com/LehmanSYS/server#readme"
+}
