@@ -4,9 +4,22 @@ const PORT = process.env.PORT || 4000;
 
 const apiRouter = require("./Api");
 const bodyParser = require("body-parser");
-const db = require("./Database"); //POSTGRESSQL CODE
+//const db = require("./Database"); //POSTGRESSQL CODE
 const cors = require('cors');
 require('./Database/populatedb.js')
+const User = require('./Models/shelter');
+
+var chris = new User({
+  name: 'Chris',
+  username: 'sevilayha',
+  password: 'password' 
+});
+
+chris.save(function(err) {
+  if (err) throw err;
+
+  console.log('User saved successfully!');
+});
 
 //Force: true wipes the database clean.
 //this file is only run once, when the app is started.

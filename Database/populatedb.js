@@ -1,24 +1,27 @@
 const MongoClient = require("../Database")
 const https = require('https');
+const axios = require('axios')
+const bodyParser = require("body-parser")
 
-const url = "https://data.cityofnewyork.us/api/views/addd-ji6a/rows.json?accessType=DOWNLOAD";
+const url_ = "https://data.cityofnewyork.us/api/views/addd-ji6a/rows.json?accessType=DOWNLOAD";
 
-https.get(url, (resp) => {
-  let data = '';
-    console.log("HELLO!\n", resp.body, "BBYE!\n")
-//   // A chunk of data has been recieved.
-//   resp.on('data', (chunk) => {
-//     data += chunk;
-//   });
+console.log("RUNNING POPULATE!!")
 
-//   // The whole response has been received. Print out the result.
-//   resp.on('end', () => {
-//     console.log(JSON.parse(data).explanation);
-//   });
+const getShelterData = async () => {
+    return await axios.get("https://data.cityofnewyork.us/api/views/addd-ji6a/rows.json")
+}
 
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
+const insertShelterData = async () => {
+    const data = await getShelterData();
+    const shelters = data.data.data
+    
+    const db = MongoClient.db('shelters')
+    const run1 = db.collection('run1')
+    run1.insertOne({
+        name: "run1 data",
+        array: shelters
+    })
+}
 
-
+insertShelterData();
 //const collection = MongoClient.collection('hurricane_shelters')
